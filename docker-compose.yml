@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  barber-shop-client-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    ports:
+      - '80:80'
+    environment:
+      - APP_BASE_URL=http://localhost:8088

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: window["env"] ? window["env"]["baseUrl"] : "http://localhost:8088"
 };

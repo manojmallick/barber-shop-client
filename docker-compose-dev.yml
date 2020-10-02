@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  barber-shop-client-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '4200:4200'
+    environment:
+      - APP_BASE_URL=http://localhost:8080
