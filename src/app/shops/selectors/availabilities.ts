@@ -12,5 +12,5 @@ export const getAllAvailabilities= createSelector(
 
 export const areAvailabilitiesLoaded = createSelector(
   availabilitiesFeatureSelector,
-  state => state.AvailabilitiesLoaded
+  state => state.availabilitiesLoaded
 );

@@ -4,8 +4,8 @@ import { AvailabilitiesTypes } from '../actions/availabilities.actions';
 import { Availability } from '../models/shop';
 
 export interface AvailabilitiesState extends EntityState<Availability> {
-  AvailabilitiesLoaded: boolean;
-  AvailabilitiesLoading: boolean;
+  availabilitiesLoaded: boolean;
+  availabilitiesLoading: boolean;
   error: string;
 }
 
@@ -26,18 +26,18 @@ export const AvailabilityReducer = createReducer(
     console.log(action)
     return adapter.setAll( action.Availabilities,{
       ...state,
-      shopsLoaded: true,
-      shopsLoading: false
+      availabilitiesLoaded: true,
+      availabilitiesLoading: false
     });
   }),
   on(AvailabilitiesTypes.loadAvailabilities, (state) => {
-    return adapter.getInitialState({ ...state, shopsLoading: true });
+    return adapter.getInitialState({ ...state, availabilitiesLoading: true });
   }),
   on(AvailabilitiesTypes.availabilitiesLoadFailed, (state, action) => {
     return adapter.setAll(action.error, {
       ...state,
-      shopsLoaded: true,
-      shopsLoading: false,
+      availabilitiesLoaded: true,
+      availabilitiesLoading: false,
       error: action.error,
     });
   })
