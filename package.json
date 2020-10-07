@@ -16,12 +16,20 @@
     "@angular/compiler": "~9.0.0",
     "@angular/core": "~9.0.0",
     "@angular/forms": "~9.0.0",
+    "@angular/localize": "^10.1.4",
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
+    "@ngrx/effects": "^10.0.0",
+    "@ngrx/entity": "^10.0.0",
+    "@ngrx/router-store": "^10.0.0",
+    "@ngrx/store": "^10.0.0",
+    "@ngrx/store-devtools": "^10.0.0",
     "bootstrap": "^4.4.1",
+    "core-js": "^3.6.5",
     "font-awesome": "^4.7.0",
+    "ngrx-store-freeze": "^0.2.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -46,5 +54,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
