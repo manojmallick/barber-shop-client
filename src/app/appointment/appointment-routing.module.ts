@@ -7,6 +7,9 @@ export const routes: Routes = [
   {
     path: '',
     component: AppointmentComponent,
+    resolve:{
+     availabilities: AvailabilitiesResolver
+    }
   },
 ];
 

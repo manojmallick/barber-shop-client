@@ -11,13 +11,17 @@ import { ComponentsModule } from '../shops/components';
 import { AvailabilityReducer } from '../shops/reducers/availabilities';
 import { AppointmentComponent } from '../shops/containers/appointment.component';
 import { AvailabilitiesEffects } from '../shops/effects/availabilities';
-import { ShopsEffects } from '../shops/effects/shops.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ValidationService } from '../shops/validation/validation.service';
+import { ControlMessagesComponent } from '../shops/validation/control-messages.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ComponentsModule,
     AppointmentRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forFeature('availabilities',AvailabilityReducer),
     EffectsModule.forFeature([AvailabilitiesEffects]),
@@ -26,6 +30,7 @@ import { ShopsEffects } from '../shops/effects/shops.effects';
   declarations: [
     AppointmentComponent
   ],
+
   exports: []
 })
 export class AppointmentModule {}
