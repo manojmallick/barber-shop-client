@@ -1,27 +1,51 @@
-# BarberShopClient
+## Barber Shop
+```
+He wants you to create a booking system that will allow his customers to book an appointment with a barber of their preference. 
+he can't really gather any information on customer's satisfaction, send them reminders or collect any other useful metrics to boost his business...
+```
+With that said, I guess we should start with helping him! We first begin by splitting the work into smaller chunks, because, you know...agile! We then mix in some priority and call them **phases**. So, let's start!
+## Motivation
+Helping every barber who want him to have a online presence in this competitive world.
+## Build status
+Build status(CICD)
+To be added
+## Screenshots
+To Be added
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0.
+## Live Demo
+To be added
 
-## Development server
+## Tech/framework used
+<b>Built with</b>
+- Angular 9
+- NgRx
+- Bootstrap
+- RxJs
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Features
+Helping out all the barbers out there who cannot invest money.(It contains only one part of the full application i.e. UI )
+#### Phase 1
+- In this first phase, the least that we can do is to appoint the customer a barber that is available. Each booking must claim a time slot of 30 minutes.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Phase 2
+- The customer can either pick a time slot where he will be able to see which barber is available or be able to select a barber and see his schedule. The barbers should be ordered by experience_level. It's up to you what defaults you choose, but hey Edwin does care about the customer journey, or as he likes to call it, "The clever stuff"!
 
-## Build
+#### Phase 3
+- As a shop owner, I want to be able to see metrics about the barbers, clients and appointments.
+- As a customer, I want to be able to change, update or delete my appointment
+- As a customer, I want to receive a reminder 1 hour before my appointment.
+- As a customer, I want to be do recurring bookings. Let's say every 2 weeks or perhaps every Month.
+- As a shop owner, I want customers to be able to join a wait list if no bookings are available.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Installation
+Provide step by step series of examples and explanations about how to get a development env running.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Credits
+Thank you all who like my project. 
 
-## Running end-to-end tests
+#### Anything else that seems useful
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## License
+MIT © [Manoj Mallick](https://github.com/manojmallick)

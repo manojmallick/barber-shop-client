@@ -1,0 +1,6 @@
+<div *ngIf="availabilities$ | async as availabilities" class="row">
+
+  <bs-appointment-detail  class="container"
+    [availabilities]="availabilities"
+  ></bs-appointment-detail>
+</div>

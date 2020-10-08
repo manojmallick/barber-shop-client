@@ -1,0 +1,128 @@
+<h4 class="mb-3">Appointment Booking</h4>
+<form [formGroup]="userForm" (submit)="saveAppointment()">
+  <div class="col-6">
+    <label for="calender">Date</label>
+    <input
+      #datepicker="ngbDatepicker"
+      [(ngModel)]="model"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [displayMonths]="displayMonths"
+      [navigation]="navigation"
+      [showWeekNumbers]="showWeekNumbers"
+      [outsideDays]="outsideDays"
+      (dateSelect)="datepicker.close();onDateSelect($event)"
+      class="form-control"
+      formControlName="calender"
+      name="calender"
+      id="calender"
+      ngbDatepicker
+      (click)="datepicker.open()"
+      (focus)="
+        !datepicker['_shouldStayClosed'] && datepicker.open();
+        datepicker['_shouldStayClosed'] = datepicker.isOpen()
+      "
+      (closed)="datepicker.close()"
+      placeholder="yyyy-mm-dd"
+    />
+    <control-messages [control]="userForm.get('calender')"></control-messages>
+    <label for="timeSlot">Available TimeSlot</label>
+    <select
+      formControlName="timeSlot"
+      class="form-control ng-pristine ng-valid ng-touched"
+      id="timeSlot"
+      name="timeSlot"
+      *ngIf="availability"
+    >
+      <option *ngFor="let slot of timeSlot" [value]="slot">
+        {{ slot }}
+      </option>
+    </select>
+    <control-messages [control]="userForm.get('timeSlot')"></control-messages>
+  </div>
+  <div class="col-6">
+    <div class="ml-5 card w-50">
+      <p class="text-capitalize font-weight-bold card-header">
+        Fill your details
+      </p>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            formControlName="name"
+            placeholder="John Doe"
+          />
+          <control-messages [control]="userForm.get('name')"></control-messages>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            placeholder="email@example.com"
+          />
+          <control-messages
+            [control]="userForm.get('email')"
+          ></control-messages>
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile Number</label>
+          <input
+            type="mobile"
+            class="form-control"
+            id="mobile"
+            name="mobile"
+            formControlName="mobile"
+            placeholder="06578904321"
+          />
+          <control-messages
+            [control]="userForm.get('mobile')"
+          ></control-messages>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+          class="form-check-input"
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+            formControlName="gender"
+          />
+          <label class="form-check-label" for="gender">Male</label>
+          <control-messages
+          [control]="userForm.get('gender')"
+        ></control-messages>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+            formControlName="gender"
+          />
+          <label class="form-check-label" for="gender">Female</label>
+          <control-messages
+            [control]="userForm.get('gender')"
+          ></control-messages>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary submit"
+          [disabled]="!userForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
