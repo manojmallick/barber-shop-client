@@ -8,6 +8,8 @@ import { AppointmentDetailsComponent } from './appointment-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ControlMessagesComponent } from '../validation/control-messages.component';
 import { ValidationService } from '../validation/validation.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export const COMPONENTS = [
   ShopDetailsComponent,
@@ -21,7 +23,8 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
   ],
   declarations: COMPONENTS,
   providers: [ValidationService],

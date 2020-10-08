@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Shop } from '../models/shop';
+import { Shop } from '../models';
 
 export const loadShops = createAction('[Shops] Load items from server');
 

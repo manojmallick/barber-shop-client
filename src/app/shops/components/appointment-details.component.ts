@@ -5,24 +5,28 @@ import {
   Input,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import {
   NgbCalendar,
   NgbDate,
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Availability, Shop } from '../models/shop';
+import { Appointment, Availability, Customer, Shop } from '../models';
 import { ValidationService } from '../validation/validation.service';
+import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
+import { AppState } from 'src/app/core/reducers';
+import { Store } from '@ngrx/store';
+import { createAppointment } from '../actions/appointment.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'bs-appointment-detail',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './appointment-details.component.html',
-  styleUrls: ['./appointment-details.component.scss']
+  styleUrls: ['./appointment-details.component.scss'],
 })
 export class AppointmentDetailsComponent implements OnDestroy {
   @Input() availabilities: Availability[];
-  @Input() date: NgbDate;
   availability: Availability;
   model: NgbDateStruct;
   displayMonths = 1;
@@ -32,18 +36,31 @@ export class AppointmentDetailsComponent implements OnDestroy {
   minDate: NgbDate | null = null;
   maxDate: NgbDate | null = null;
   userForm: any;
-  orders: { id: string; name: string }[];
+  dateformat: DatePipe;
+  private sub: any;
+  private shopId: string;
 
   constructor(
-    private router: Router,
     calendar: NgbCalendar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store: Store<AppState>,
+    private route: ActivatedRoute
   ) {
+    this.sub = this.route.params.subscribe((params) => {
+      this.shopId = params['id']; // (+) converts string 'id' to a number
+    });
+    this.dateformat = new DatePipe(
+      navigator.language || navigator['userLanguage']
+    );
     this.model = calendar.getToday();
     this.minDate = calendar.getToday();
-    this.maxDate = calendar.getNext(calendar.getToday(), 'd', 90);
+    this.maxDate = calendar.getNext(
+      calendar.getToday(),
+      'd',
+      environment.maxDays
+    );
     this.userForm = this.formBuilder.group({
-      calender: ['', Validators.required],
+      calender: ['', Validators.nullValidator],
       timeSlot: ['', Validators.required],
       name: ['', Validators.required],
       email: ['', [Validators.required, ValidationService.emailValidator]],
@@ -56,27 +73,24 @@ export class AppointmentDetailsComponent implements OnDestroy {
   }
 
   onDateSelect(date: NgbDate) {
-    this.availability = this.availabilities?.filter(
-      (p) => p.id == this.formatDate(date)
-    )[0];
+    this.mapAvailability(date);
   }
 
-  formatDate(d: any): string {
-    if (!d) {
+  formatDate(date: NgbDate | NgbDateStruct): string {
+    if (!date) {
       return null;
     }
-
-    console.log(d);
-    return [
-      d.year,
-      d.month < 10 ? '0' + d.month : d.month,
-      d.day < 10 ? '0' + d.day : d.day,
-    ].join('-');
+    const now = new Date(date.year, date.month - 1, date.day);
+    return this.dateformat.transform(now, 'yyyy-MM-dd');
   }
 
   ngOnChanges() {
+    this.mapAvailability(this.model);
+  }
+
+  private mapAvailability(date: NgbDate | NgbDateStruct) {
     this.availability = this.availabilities?.filter(
-      (p) => p.id == this.formatDate(this.model)
+      (p) => p.id == this.formatDate(date)
     )[0];
   }
 
@@ -87,14 +101,38 @@ export class AppointmentDetailsComponent implements OnDestroy {
     return this.availability?.timeSlot;
   }
 
-  saveUser() {
+  saveAppointment() {
     if (this.userForm.dirty && this.userForm.valid) {
-      console.log(this.userForm.value);
-      alert(
-        `Name: ${this.userForm.value.name} Email: ${this.userForm.value.email}`
-      );
+      const customer: Customer = this.buildCustomer();
+      const shop: Shop = this.mapShop();
+
+      const appointment: Appointment = this.buildAppointment(customer, shop);
+      this.store.dispatch(createAppointment({ appointment }));
     }
   }
+  private mapShop(): Shop {
+    return {
+      id: this.shopId,
+    };
+  }
 
-  ngOnDestroy() {}
+  private buildAppointment(customer: Customer, shop: Shop): Appointment {
+    return {
+      startTime: this.userForm.value.timeSlot,
+      bookingDate: this.formatDate(this.userForm.value.calender),
+      customer,
+      shop,
+    };
+  }
+
+  private buildCustomer(): Customer {
+    return {
+      name: this.userForm.value.name,
+      gender: this.userForm.value.gender,
+      email: this.userForm.value.email,
+      mobile: this.userForm.value.mobile,
+    };
+  }
+
+  ngOnDestroy(): void {}
 }

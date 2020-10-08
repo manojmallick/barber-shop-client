@@ -9,3 +9,4 @@ services:
       - '80:80'
     environment:
       - APP_BASE_URL=http://localhost:8088
+      - APP_MAX_DAYS=90

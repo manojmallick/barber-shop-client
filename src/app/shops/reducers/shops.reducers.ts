@@ -1,8 +1,7 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { ShopActionTypes, shopsLoaded } from '../actions/shops.actions';
-import { Shop } from '../models/shop';
-
+import { Shop } from '../models';
 export interface ShopState extends EntityState<Shop> {
   shopsLoaded: boolean;
   shopsLoading: boolean;

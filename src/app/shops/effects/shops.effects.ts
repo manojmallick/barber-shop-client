@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ShopActionTypes } from '../actions/shops.actions';
 import { ShopsService } from '../services/shops.service';
 import { asyncScheduler, EMPTY as empty, Observable, of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ShopsEffects {
@@ -12,9 +13,9 @@ export class ShopsEffects {
   shopsLoaded$ = createEffect(() =>{
     return this.actions$.pipe(
       ofType(ShopActionTypes.loadShops),
-      concatMap(() => this.shopService.getAllShops()),
-      map(shops => ShopActionTypes.shopsLoaded({shops})),
-      catchError(error=>of(ShopActionTypes.shopsLoadFailed({error})))
+     concatMap(() => this.shopService.getAllShops()),
+     map(shops => ShopActionTypes.shopsLoaded({shops})),
+     catchError(error=>of(ShopActionTypes.shopsLoadFailed({error}))),
     )
   }
   );

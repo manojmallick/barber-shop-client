@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Availability } from '../models/shop';
+import { Availability } from '../models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class AvailabilitiesService {
 
   constructor(private http: HttpClient) {}
 
-  getAllShops(
+  getAvailabilities(
     bookingDate: string,
     endDate: string,
     shopId: string

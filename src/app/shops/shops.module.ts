@@ -11,6 +11,8 @@ import { ShopsEffects } from './effects/shops.effects';
 import { ShopListComponent } from './containers/shop-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentModule } from '../appointment/appointment.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { AppointmentModule } from '../appointment/appointment.module';
     StoreModule.forFeature('shops',shopReducer),
     EffectsModule.forFeature([ShopsEffects]),
     AppointmentModule,
+    ToastrModule.forRoot(),
     NgbModule
   ],
   declarations: [

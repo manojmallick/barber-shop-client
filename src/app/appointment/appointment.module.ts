@@ -8,12 +8,13 @@ import { AppointmentRoutingModule } from './appointment-routing.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsModule } from '../shops/components';
-import { AvailabilityReducer } from '../shops/reducers/availabilities';
+import { AvailabilityReducer } from '../shops/reducers/availabilities.reducers';
 import { AppointmentComponent } from '../shops/containers/appointment.component';
-import { AvailabilitiesEffects } from '../shops/effects/availabilities';
+import { AvailabilitiesEffects } from '../shops/effects/availabilities.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ValidationService } from '../shops/validation/validation.service';
-import { ControlMessagesComponent } from '../shops/validation/control-messages.component';
+import { AppointmentEffects } from '../shops/effects/appointment.effects';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ControlMessagesComponent } from '../shops/validation/control-messages.c
     ReactiveFormsModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forFeature('availabilities',AvailabilityReducer),
-    EffectsModule.forFeature([AvailabilitiesEffects]),
+    EffectsModule.forFeature([AvailabilitiesEffects,AppointmentEffects]),
+    ToastrModule.forRoot(),
     NgbModule
   ],
   declarations: [

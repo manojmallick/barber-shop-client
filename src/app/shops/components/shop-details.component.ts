@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Shop } from '../models/shop';
+import { Shop } from '../models';
 
 @Component({
   selector: 'bs-shop-detail',
@@ -18,15 +18,15 @@ import { Shop } from '../models/shop';
             *ngIf="avatar"
             [src]="avatar"
             class="img-fluid"
-            alt="Responsive image"
+            alt="Store image"
           />
         </div>
         <div class="col">
           <div class="row mt-3">
             <div class="col">
-              <h4 class="text-center font-weight-bold">Hamontstraat 267</h4>
+              <h4 class="text-center font-weight-bold">{{address}}</h4>
               <div class="mt-4">
-                <p>{{ address }}</p>
+                <p>{{ email }}</p>
                 <p>Telephone: {{ phone }}</p>
               </div>
 

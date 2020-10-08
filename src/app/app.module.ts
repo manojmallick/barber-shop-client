@@ -15,6 +15,7 @@ import { reducers, metaReducers } from './core/reducers';
 import { environment } from 'src/environments/environment';
 import { ShopResolver } from './shops/resolvers/shop.resolver';
 import { AvailabilitiesResolver } from './shops/resolvers/availabilities.resolver';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { AvailabilitiesResolver } from './shops/resolvers/availabilities.resolve
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    ToastrModule.forRoot(),
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers, {
       metaReducers,

@@ -1,7 +1,7 @@
 
 
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { AvailabilitiesState, selectAll } from '../reducers/availabilities';
+import { AvailabilitiesState, selectAll } from '../reducers/availabilities.reducers';
 
 export const availabilitiesFeatureSelector = createFeatureSelector<AvailabilitiesState>('availabilities');
 

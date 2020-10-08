@@ -8,9 +8,8 @@ import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { filter, first, tap } from 'rxjs/operators';
 import { AppState } from '../../core/reducers';
-import { areAvailabilitiesLoaded } from '../selectors/availabilities';
+import { areAvailabilitiesLoaded } from '../selectors/availabilities.selectors';
 import { loadAvailabilities } from '../actions/availabilities.actions';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 @Injectable()
 export class AvailabilitiesResolver implements Resolve<Observable<any>> {
   constructor(private store: Store<AppState>) {}
@@ -19,7 +18,6 @@ export class AvailabilitiesResolver implements Resolve<Observable<any>> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    console.log('availabilitiesLoaded');
     return this.store.pipe(
       select(areAvailabilitiesLoaded),
       tap((availabilitiesLoaded) => {

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AppState } from 'src/app/core/reducers';
-import { Shop } from '../models/shop';
-import { getAllShops } from '../selectors/entity.selectors';
+import { Shop } from '../models';
+import { getAllShops } from '../selectors/shop.selectors';
 
 @Component({
   selector: 'bs-shop-list',
@@ -20,9 +21,7 @@ import { getAllShops } from '../selectors/entity.selectors';
 export class ShopListComponent implements OnDestroy {
   shops$: Observable<Shop[]>;
 
-  constructor(private store: Store<AppState>) {
-    console.log("===>2");
-  }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.shops$ = this.store.select(getAllShops);

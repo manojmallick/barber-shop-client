@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import { Availability } from '../models/shop';
+import { Availability } from '../models';
 
 export const loadAvailabilities = createAction(
   '[Availabilities] Load items from server',
@@ -8,7 +9,7 @@ export const loadAvailabilities = createAction(
 
 export const availabilitiesLoaded = createAction(
   '[Availabilities] Load success',
-  props<{ Availabilities: Availability[] }>()
+  props<{ Availabilities: Availability[]}>()
 );
 
 export const availabilitiesLoadFailed = createAction(
