@@ -1,6 +1,41 @@
 <p *ngIf="appointment">
-  Booking id{{id}}   
-  <br>
-  booking date {{bookingDate}}
-  </p>
+  Booking id{{ id }}
+  <br />
+  booking date {{ bookingDate }}
+</p>
 
+<div class="report-layout" *ngIf="appointment">
+  <p class="title">appointment details</p>
+  <div>
+    <div class="row">
+      <div class="column left-col">
+        <p>Booking Reference number:</p>
+        <p>Name:</p>
+        <p>Email id:</p>
+        <p>Phone Number:</p>
+        <p>Gender:</p>
+        <p>Your Stylish:</p>
+        <!-- <p>Your Service:</p> -->
+        <p>Date and Time:</p>
+      </div>
+      <div class="column right-col">
+        <p>{{ id }}</p>
+        <p>{{ customerName }}</p>
+        <p>{{ customerEmail }}/p></p>
+        <p>{{ customerMobile }}</p>
+        <p>{{ customerGender }}</p>
+        <div>
+          <p class="barber-style">{{ barberName }}</p>
+          &nbsp; &nbsp;
+          <img [src]="barberaAvatar" class="barber-image" alt="..." /><br />
+        </div>
+        <!-- <p>Hair cut</p> -->
+        <p>{{ bookingDate }} at {{ bookingTime }}</p>
+      </div>
+    </div>
+    <div class="action-button">
+      <button type="button" class="btn btn-info">Edit</button>
+      <button type="button" class="btn btn-info">Delete</button>
+    </div>
+  </div>
+</div>

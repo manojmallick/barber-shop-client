@@ -29,13 +29,7 @@ import { AppointmentResolver } from '../resolvers/appointment.resolver';
 export class ConfirmationDetailsComponent implements OnDestroy {
   @Input() appointment: Appointment;
 
-  constructor(
-  ) {
-    console.log(this.appointment)
-    
-  }
-
-  
+  constructor() {}
 
   get id() {
     return this.appointment?.id;
@@ -43,8 +37,29 @@ export class ConfirmationDetailsComponent implements OnDestroy {
   get bookingDate() {
     return this.appointment?.bookingDate;
   }
+  get bookingTime() {
+    return this.appointment?.startTime;
+  }
 
+  get customerName() {
+    return this.appointment?.customer.name;
+  }
+  get customerEmail() {
+    return this.appointment?.customer.email;
+  }
+  get customerMobile() {
+    return this.appointment?.customer.mobile;
+  }
+  get customerGender() {
+    return this.appointment?.customer.gender;
+  }
+  get barberName() {
+    return this.appointment?.barber.name;
+  }
 
+  get barberaAvatar() {
+    return this.appointment?.barber.avatar;
+  }
 
   ngOnDestroy(): void {}
 }

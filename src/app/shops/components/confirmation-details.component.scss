@@ -1,9 +1,71 @@
-form {
-  width: 100%;
-  display: inline-flex;
+.report-layout {
+  // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 500px;
+  position: relative;
+  background-color: #d9e6f2;
+}
+.report:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.title {
+  color: #996633;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20px !important;
+  text-transform: uppercase;
+}
+.column {
+  float: left;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
-control-messages {
-  color: #e82c0c;
-  margin: 6px 0;
+.left-col,
+.right-col {
+  color: #43425d;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-top: 30px;
+  position: relative;
+  left: 20%;
+  width: 30%;
+}
+
+.right-col {
+  text-align: left;
+  width: 50%;
+  font-weight: normal;
+}
+.barber-style {
+  display: inline-block;
+}
+.barber-image {
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  border: 2px solid white;
+}
+.action-button {
+  display: inline-block;
+  position: relative;
+  left: 30%;
+}
+.btn-info {
+  background-color: #996633;
+  width: 150px;
+  text-align: center;
+  padding: 10px 12px;
+  margin-top: 30px;
+  margin-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-color: #996633;
+  font-weight: bold;
 }
