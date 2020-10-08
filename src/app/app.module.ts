@@ -12,11 +12,11 @@ import { AppComponent } from './core/containers/app.component';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { reducers, metaReducers } from './core/reducers';
-import { environment } from 'src/environments/environment';
 import { ShopResolver } from './shops/resolvers/shop.resolver';
 import { AvailabilitiesResolver } from './shops/resolvers/availabilities.resolver';
 import { ToastrModule } from 'ngx-toastr';
 import { AppointmentResolver } from './shops/resolvers/appointment.resolver';
+import { BarbersResolver } from './shops/resolvers/barbers.resolver';
 
 @NgModule({
   declarations: [],
@@ -35,7 +35,7 @@ import { AppointmentResolver } from './shops/resolvers/appointment.resolver';
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     CoreModule
   ],
-  providers: [ShopResolver,AvailabilitiesResolver,AppointmentResolver],
+  providers: [ShopResolver,AvailabilitiesResolver,AppointmentResolver,BarbersResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

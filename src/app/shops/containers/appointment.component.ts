@@ -9,8 +9,9 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { NotFoundPageComponent } from 'src/app/core/containers/not-found-page.component';
 import { AppState } from 'src/app/core/reducers';
 import { AppointmentTypes } from '../actions/appointment.actions';
-import { Availability } from '../models';
+import { Availability, Barber } from '../models';
 import { getAllAvailabilities } from '../selectors/availabilities.selectors';
+import { getAllBarbers } from '../selectors/barbers.selectors';
 
 @Component({
   selector: 'bs-appointment',
@@ -20,7 +21,7 @@ import { getAllAvailabilities } from '../selectors/availabilities.selectors';
 })
 export class AppointmentComponent implements OnDestroy {
   availabilities$: Observable<Availability[] | HttpErrorResponse>;
-
+  barbers$ : Observable<Barber[] | HttpErrorResponse>;
 
   constructor(private store: Store<AppState>, private toasts: ToastrService,
     private router: Router) {
@@ -28,6 +29,7 @@ export class AppointmentComponent implements OnDestroy {
 
   ngOnInit() {
     this.availabilities$ = this.store.select(getAllAvailabilities);
+    this.barbers$ = this.store.select(getAllBarbers);
     this.mapErrorMessage();
   }
 

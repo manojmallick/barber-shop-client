@@ -1,6 +1,7 @@
-<div *ngIf="availabilities$ | async as availabilities" class="row">
-
+<div *ngIf="availabilities$ | async as availabilities " class="row">
+  <span *ngIf="barbers$ | async as barbers" class="col-8 container">
   <bs-appointment-detail  class="container"
-    [availabilities]="availabilities"
+    [availabilities]="availabilities" [barbers]="barbers"
   ></bs-appointment-detail>
+  </span>
 </div>
