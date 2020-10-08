@@ -14,7 +14,8 @@ import { AvailabilitiesEffects } from '../shops/effects/availabilities.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentEffects } from '../shops/effects/appointment.effects';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { appointmentLoadingReducer } from '../shops/reducers/appointment.reducers';
+import { ConfirmationComponent } from '../shops/containers/confirmation.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forFeature('availabilities',AvailabilityReducer),
+    StoreModule.forFeature('appointment',appointmentLoadingReducer),
     EffectsModule.forFeature([AvailabilitiesEffects,AppointmentEffects]),
     ToastrModule.forRoot(),
     NgbModule
   ],
   declarations: [
-    AppointmentComponent
+    AppointmentComponent,
+    ConfirmationComponent
   ],
 
   exports: []

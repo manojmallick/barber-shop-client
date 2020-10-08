@@ -14,7 +14,9 @@ export class AvailabilitiesEffects {
       concatMap((action) => 
          this.availabilitiesService.getAvailabilities(action.startDate,action.endDate,action.shopId)
       ),
-      map(Availabilities => AvailabilitiesTypes.availabilitiesLoaded({Availabilities})),
+      map(Availabilities => {
+        return AvailabilitiesTypes.availabilitiesLoaded({Availabilities})
+      }),
       catchError((error) =>
         of(AvailabilitiesTypes.availabilitiesLoadFailed({ error })),
       ) ,

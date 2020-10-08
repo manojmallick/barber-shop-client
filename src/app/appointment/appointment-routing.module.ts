@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppointmentComponent } from '../shops/containers/appointment.component';
+import { ConfirmationComponent } from '../shops/containers/confirmation.component';
+import { AppointmentResolver } from '../shops/resolvers/appointment.resolver';
 import { AvailabilitiesResolver } from '../shops/resolvers/availabilities.resolver';
 
 export const routes: Routes = [
@@ -9,7 +11,16 @@ export const routes: Routes = [
     component: AppointmentComponent,
     resolve:{
      availabilities: AvailabilitiesResolver
-    }
+    },
+    
+  },
+  {
+    path: ':id',
+    component: ConfirmationComponent,
+    resolve:{
+     availabilities: AppointmentResolver
+    },
+    
   },
 ];
 

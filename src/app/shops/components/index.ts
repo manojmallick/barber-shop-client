@@ -10,11 +10,13 @@ import { ControlMessagesComponent } from '../validation/control-messages.compone
 import { ValidationService } from '../validation/validation.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationDetailsComponent } from './confirmation-details.component';
 
 export const COMPONENTS = [
   ShopDetailsComponent,
   AppointmentDetailsComponent,
-  ControlMessagesComponent
+  ControlMessagesComponent,
+  ConfirmationDetailsComponent
 ];
 
 @NgModule({

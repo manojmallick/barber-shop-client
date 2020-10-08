@@ -16,8 +16,6 @@ export class AppointmentEffects {
           this.appointmentService.createAppointment(action.appointment)
         ),
         tap((action) => {
-          console.log(this.router.url); //  /routename
-          console.log(this.route.url)
          this.router.navigateByUrl(`${this.router.url}/${action.id}`)
         }),
         catchError((error) =>

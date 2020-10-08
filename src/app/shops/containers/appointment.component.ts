@@ -21,11 +21,9 @@ import { getAllAvailabilities } from '../selectors/availabilities.selectors';
 export class AppointmentComponent implements OnDestroy {
   availabilities$: Observable<Availability[] | HttpErrorResponse>;
 
-  error$: BehaviorSubject<string>;
 
   constructor(private store: Store<AppState>, private toasts: ToastrService,
     private router: Router) {
-    this.error$ = new BehaviorSubject<string>('');
   }
 
   ngOnInit() {

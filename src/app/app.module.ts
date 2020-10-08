@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { ShopResolver } from './shops/resolvers/shop.resolver';
 import { AvailabilitiesResolver } from './shops/resolvers/availabilities.resolver';
 import { ToastrModule } from 'ngx-toastr';
+import { AppointmentResolver } from './shops/resolvers/appointment.resolver';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     CoreModule
   ],
-  providers: [ShopResolver,AvailabilitiesResolver],
+  providers: [ShopResolver,AvailabilitiesResolver,AppointmentResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
