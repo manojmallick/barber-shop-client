@@ -10,7 +10,7 @@ import {
   NgbDate,
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Appointment, Availability, Customer, Shop } from '../models';
+import { Appointment, Availability, Customer, DATE_FORMAT, Shop } from '../models';
 import { ValidationService } from '../validation/validation.service';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
@@ -47,7 +47,7 @@ export class AppointmentDetailsComponent implements OnDestroy {
     private route: ActivatedRoute
   ) {
     this.sub = this.route.params.subscribe((params) => {
-      this.shopId = params['id']; // (+) converts string 'id' to a number
+      this.shopId = params['shopId']; // (+) converts string 'id' to a number
     });
     this.dateformat = new DatePipe(
       navigator.language || navigator['userLanguage']
@@ -81,7 +81,7 @@ export class AppointmentDetailsComponent implements OnDestroy {
       return null;
     }
     const now = new Date(date.year, date.month - 1, date.day);
-    return this.dateformat.transform(now, 'yyyy-MM-dd');
+    return this.dateformat.transform(now, DATE_FORMAT);
   }
 
   ngOnChanges() {
