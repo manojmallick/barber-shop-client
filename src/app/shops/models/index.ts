@@ -4,6 +4,11 @@
 export interface Availability{
   id:string;
   timeSlot:string[];
+  barberTimeSlot:BarberTimeSlot;
+}
+
+export interface BarberTimeSlot{
+  [id:string]:string[];
 }
 
 export interface Shop {
@@ -43,9 +48,9 @@ export interface Customer{
 
 export interface Barber{
   id: string;
-  name: string;
-  experience: string;
-  avatar: string;
+  name?: string;
+  experience?: string;
+  avatar?: string;
 }
 
 export interface Service{

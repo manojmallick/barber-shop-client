@@ -1,7 +1,24 @@
-<h4 class="mb-3">Appointment Booking</h4>
+<h4 class="mb-3" class="font-weight-bold">Appointment Booking</h4>
 <form [formGroup]="userForm" (submit)="saveAppointment()">
   <div class="col-6">
-    <label for="calender">Date</label>
+    <label for="barber" class="font-weight-bold">Available Stylish</label>
+    <select
+      [(ngModel)]="modelBarber"
+      formControlName="barber"
+      (ngModelChange)="onChangeBarber($event)"
+      class="form-control ng-pristine ng-valid ng-touched"
+      id="barber"
+      name="barber"
+      *ngIf="barbers"
+    >
+      <option value=""  class="font-weight-bold">select your barber</option>
+      <option *ngFor="let barber of barbers" [ngValue]="barber">
+        {{ barber.name }} has {{ barber.experience }} experience
+      </option>
+    </select>
+    <control-messages [control]="userForm.get('barber')"></control-messages>
+    
+    <label for="calender" class="font-weight-bold">Date</label>
     <input
       #datepicker="ngbDatepicker"
       [(ngModel)]="model"
@@ -11,7 +28,7 @@
       [navigation]="navigation"
       [showWeekNumbers]="showWeekNumbers"
       [outsideDays]="outsideDays"
-      (dateSelect)="datepicker.close();onDateSelect($event)"
+      (dateSelect)="datepicker.close(); onDateSelect($event)"
       class="form-control"
       formControlName="calender"
       name="calender"
@@ -26,7 +43,7 @@
       placeholder="yyyy-mm-dd"
     />
     <control-messages [control]="userForm.get('calender')"></control-messages>
-    <label for="timeSlot">Available TimeSlot</label>
+    <label for="timeSlot "class="font-weight-bold">Available TimeSlot</label>
     <select
       formControlName="timeSlot"
       class="form-control ng-pristine ng-valid ng-touched"
@@ -39,6 +56,12 @@
       </option>
     </select>
     <control-messages [control]="userForm.get('timeSlot')"></control-messages>
+    <div class="card mt-3" style="width: 12rem;" *ngIf="modelBarber">
+      <img [src]="barberAvatar" class="card-img-top" alt="image">
+      <div class="card-body">
+        <p class="card-text">Has a experience of {{barberExperience}}.</p>
+      </div>
+    </div>
   </div>
   <div class="col-6">
     <div class="ml-5 card w-50">
@@ -88,7 +111,7 @@
         </div>
         <div class="form-check form-check-inline">
           <input
-          class="form-check-input"
+            class="form-check-input"
             type="radio"
             name="gender"
             id="male"
@@ -97,8 +120,8 @@
           />
           <label class="form-check-label" for="gender">Male</label>
           <control-messages
-          [control]="userForm.get('gender')"
-        ></control-messages>
+            [control]="userForm.get('gender')"
+          ></control-messages>
         </div>
         <div class="form-check form-check-inline">
           <input

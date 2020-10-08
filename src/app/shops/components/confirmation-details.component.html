@@ -1,4 +1,4 @@
-<div class="report-layout" *ngIf="appointment">
+<div class="report-layout" *ngIf="appointment&&id">
   <p class="title">appointment details</p>
   <div>
     <div class="row">
@@ -15,7 +15,7 @@
       <div class="column right-col">
         <p>{{ id }}</p>
         <p>{{ customerName }}</p>
-        <p>{{ customerEmail }}/p></p>
+        <p>{{ customerEmail }}</p>
         <p>{{ customerMobile }}</p>
         <p>{{ customerGender }}</p>
         <div>

@@ -4,13 +4,15 @@ import { AppointmentComponent } from '../shops/containers/appointment.component'
 import { ConfirmationComponent } from '../shops/containers/confirmation.component';
 import { AppointmentResolver } from '../shops/resolvers/appointment.resolver';
 import { AvailabilitiesResolver } from '../shops/resolvers/availabilities.resolver';
+import { BarbersResolver } from '../shops/resolvers/barbers.resolver';
 
 export const routes: Routes = [
   {
     path: '',
     component: AppointmentComponent,
     resolve:{
-     availabilities: AvailabilitiesResolver
+     availabilities: AvailabilitiesResolver,
+     barbers:BarbersResolver
     },
     
   },
@@ -18,7 +20,7 @@ export const routes: Routes = [
     path: ':appointmentId',
     component: ConfirmationComponent,
     resolve:{
-     availabilities: AppointmentResolver
+     appointment: AppointmentResolver
     },
     
   },

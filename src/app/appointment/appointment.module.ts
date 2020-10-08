@@ -16,6 +16,8 @@ import { AppointmentEffects } from '../shops/effects/appointment.effects';
 import { ToastrModule } from 'ngx-toastr';
 import { appointmentLoadingReducer } from '../shops/reducers/appointment.reducers';
 import { ConfirmationComponent } from '../shops/containers/confirmation.component';
+import { barberReducer } from '../shops/reducers/barbers.reducers';
+import { BarbersEffects } from '../shops/effects/barbers.effects';
 
 @NgModule({
   imports: [
@@ -27,7 +29,8 @@ import { ConfirmationComponent } from '../shops/containers/confirmation.componen
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forFeature('availabilities',AvailabilityReducer),
     StoreModule.forFeature('appointment',appointmentLoadingReducer),
-    EffectsModule.forFeature([AvailabilitiesEffects,AppointmentEffects]),
+    StoreModule.forFeature('barbers',barberReducer),
+    EffectsModule.forFeature([AvailabilitiesEffects,AppointmentEffects,BarbersEffects]),
     ToastrModule.forRoot(),
     NgbModule
   ],
