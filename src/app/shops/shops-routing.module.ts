@@ -5,15 +5,15 @@ import { ShopResolver } from './resolvers/shop.resolver';
 
 export const routes: Routes = [
   {
-    path: ':id/appointments',
+    path: ':shopId/appointments',
     loadChildren: () =>
       import('../appointment/appointment.module').then(
         (m) => m.AppointmentModule
       ),
   },
   {
-    path: ':id',
-    redirectTo: ':id/appointments',
+    path: ':shopId',
+    redirectTo: ':shopId/appointments',
     pathMatch: 'full',
   },
   {

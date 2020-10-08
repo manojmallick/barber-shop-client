@@ -1,4 +1,6 @@
 
+ export const DATE_FORMAT = 'yyyy-MM-dd';
+
 export interface Availability{
   id:string;
   timeSlot:string[];

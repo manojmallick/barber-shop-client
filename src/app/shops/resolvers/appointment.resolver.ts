@@ -25,7 +25,7 @@ export class AppointmentResolver implements Resolve<Observable<any>> {
         if (!appointmentLoaded) {
           this.store.dispatch(
             loadAppointment({
-              appointmentId: route.params['id'],
+              appointmentId: route.params['appointmentId'],
             })
           );
         }

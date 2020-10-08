@@ -15,7 +15,7 @@ export const routes: Routes = [
     
   },
   {
-    path: ':id',
+    path: ':appointmentId',
     component: ConfirmationComponent,
     resolve:{
      availabilities: AppointmentResolver

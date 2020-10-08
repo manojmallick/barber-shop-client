@@ -33,7 +33,7 @@ export const appointmentLoadingReducer = createReducer(
     return adapter.getInitialState({ ...state, appointmentLoading: true });
   }),
   on(AppointmentTypes.createAppointmentFailed, (state, action) => {
-    return adapter.setAll(action.error, {
+    return adapter.removeOne(action.error, {
       ...state,
       appointmentLoaded: true,
       appointmentLoading: false,
@@ -44,7 +44,7 @@ export const appointmentLoadingReducer = createReducer(
     return adapter.addOne(action.appointment, state);
   }),
   on(AppointmentTypes.createAppointmentFailed, (state, action) => {
-    return adapter.addOne(action.error, {
+    return adapter.removeOne(action.error, {
       ...state,
       error: action.error,
     });
