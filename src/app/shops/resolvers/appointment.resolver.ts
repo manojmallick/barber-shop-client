@@ -21,7 +21,6 @@ export class AppointmentResolver implements Resolve<Observable<any>> {
     return this.store.pipe(
       select(areAppointmentLoaded),
       tap((appointmentLoaded) => {
-        console.log(appointmentLoaded)
         if (!appointmentLoaded) {
           this.store.dispatch(
             loadAppointment({

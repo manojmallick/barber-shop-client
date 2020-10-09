@@ -86,7 +86,6 @@ export class AppointmentDetailsComponent implements OnDestroy {
 
   onDateSelect(date: NgbDate) {
     this.mapAvailability(date);
-    console.log('3');
   }
 
   formatDate(date: NgbDate | NgbDateStruct): string {

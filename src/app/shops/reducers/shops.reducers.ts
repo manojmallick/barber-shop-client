@@ -20,7 +20,6 @@ export const shopReducer = createReducer(
   initialState,
 
   on(ShopActionTypes.shopsLoaded, (state, action) => {
-    console.log(action)
     return adapter.setAll(action.shops, {
       ...state,
       shopsLoaded: true,

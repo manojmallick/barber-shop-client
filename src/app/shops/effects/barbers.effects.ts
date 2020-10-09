@@ -9,7 +9,6 @@ import { BarbersService } from '../services/barbers.service';
 export class BarbersEffects {
 
   barbersLoaded$ = createEffect(() =>{
-    console.log("barbers")
     return this.actions$.pipe(
       ofType(BarberActionTypes.loadBarbers),
      concatMap(() => this.barberService.getAllBarbers()),
