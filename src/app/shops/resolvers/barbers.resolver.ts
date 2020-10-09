@@ -18,11 +18,9 @@ export class BarbersResolver implements Resolve<Observable<any>> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    console.log("hi")
     return this.store.pipe(
       select(areBarbersLoaded),
       tap((barbersLoaded) => {
-        console.log(barbersLoaded)
         if (!barbersLoaded) {
           this.store.dispatch(loadBarbers());
         }

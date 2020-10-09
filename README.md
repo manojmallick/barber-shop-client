@@ -10,7 +10,11 @@ Helping every barber who want him to have a online presence in this competitive 
 Build status(CICD)
 To be added
 ## Screenshots
-To Be added
+![title](picture/1.png)
+![title](picture/2.png)
+![title](picture/3.png)
+![title](picture/4.png)
+![title](picture/5.png)
 
 ## Live Demo
 To be added
@@ -75,6 +79,8 @@ To check the code ide like Vs code , lombok is to be installed
 
 ## Credits
 Thank you all who like my project. 
+
+![title](picture/6.gif)
 
 #### Anything else that seems useful
 
