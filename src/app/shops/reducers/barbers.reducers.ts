@@ -20,7 +20,6 @@ export const barberReducer = createReducer(
   initialState,
 
   on(BarberActionTypes.barbersLoaded, (state, action) => {
-    console.log("hekosl")
     return adapter.setAll(action.barbers, {
       ...state,
       barbersLoaded: true,
@@ -28,7 +27,6 @@ export const barberReducer = createReducer(
     });
   }),
   on(BarberActionTypes.loadBarbers, (state) => {
-    console.log("hekosl")
 
     return adapter.getInitialState({ ...state, barbersLoading: true });
   }),

@@ -14,13 +14,13 @@ export class AppointmentEffects {
         ofType(AppointmentTypes.createAppointment),
         concatMap((action) =>
           this.appointmentService.createAppointment(action.appointment)
-        ),
+        ) ,
         tap((action) => {
          this.router.navigateByUrl(`${this.router.url}/${action.id}`)
         }),
         catchError((error) =>
-          of(AppointmentTypes.createAppointmentFailed({ error }))
-        )
+        of(AppointmentTypes.createAppointmentFailed({ error }))
+      ),
       ),
     { dispatch: false }
   );
