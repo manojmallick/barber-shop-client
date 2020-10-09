@@ -36,12 +36,7 @@ Helping out all the barbers out there who cannot invest money.(It contains only 
 - The customer can either pick a time slot where he will be able to see which barber is available or be able to select a barber and see his schedule. The barbers should be ordered by experience_level. It's up to you what defaults you choose, but hey Edwin does care about the customer journey, or as he likes to call it, "The clever stuff"!
 
 #### Phase 3
-- As a shop owner, I want to be able to see metrics about the barbers, clients and appointments.
-- As a customer, I want to be able to change, update or delete my appointment
 - As a customer, I want to receive a reminder 1 hour before my appointment.
-- As a customer, I want to be do recurring bookings. Let's say every 2 weeks or perhaps every Month.
-- As a shop owner, I want customers to be able to join a wait list if no bookings are available.
-
 #### Additional Futures
 - Shop page is configurable i.e. user shop owner can add more stores(all other entities will work around the shop id)
 - Services are added from the api side , but ui its pending
