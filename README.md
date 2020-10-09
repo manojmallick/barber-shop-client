@@ -40,7 +40,38 @@ Helping out all the barbers out there who cannot invest money.(It contains only 
 
 ## Installation
 Provide step by step series of examples and explanations about how to get a development env running.
+Provide step by step series of examples and explanations about how to get a development env running.
 
+Multiple ways to run the application 
+- Docker way
+
+I have created two scripts & two bat files
+After in the root 
+```
+sh ./run-dev.sh   #this is for local dev(port :4200)
+sh ./run.sh       #this for prod env(port:80)
+
+or
+
+chmod +x run.sh
+./run.sh
+
+or
+
+./mvnw.cmd clean install
+docker-compose -f docker-compose-dev.yml up -d --build
+
+``` 
+
+port can be update by  docker compose file/ .env file in root.
+
+To check the code ide like Vs code , lombok is to be installed 
+
+- Other way
+
+- Node
+- IDE(optional)
+# this requires backend application should be running
 
 ## Credits
 Thank you all who like my project. 
