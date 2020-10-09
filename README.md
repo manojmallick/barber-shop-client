@@ -42,6 +42,15 @@ Helping out all the barbers out there who cannot invest money.(It contains only 
 - As a customer, I want to be do recurring bookings. Let's say every 2 weeks or perhaps every Month.
 - As a shop owner, I want customers to be able to join a wait list if no bookings are available.
 
+#### Additional Futures
+- Shop page is configurable i.e. user shop owner can add more stores(all other entities will work around the shop id)
+- Services are added from the api side , but ui its pending
+- The user will get email after booking confirmation
+
+### Technical features
+- added with swagger support [Host]/api/swagger-ui.html
+- added with docker configuration to be deployed to dev and prod
+
 ## Installation
 Provide step by step series of examples and explanations about how to get a development env running.
 Provide step by step series of examples and explanations about how to get a development env running.
