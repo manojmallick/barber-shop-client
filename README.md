@@ -1,97 +1,114 @@
-## Barber Shop
-```
-He wants you to create a booking system that will allow his customers to book an appointment with a barber of their preference. 
-he can't really gather any information on customer's satisfaction, send them reminders or collect any other useful metrics to boost his business...
-```
-With that said, I guess we should start with helping him! We first begin by splitting the work into smaller chunks, because, you know...agile! We then mix in some priority and call them **phases**. So, let's start!
-## Motivation
-Helping every barber who want him to have a online presence in this competitive world.
-## Build status
-Build status(CICD)
-To be added
-## Screenshots
-![title](picture/1.png)
-![title](picture/2.png)
-![title](picture/3.png)
-![title](picture/4.png)
-![title](picture/5.png)
+# Barber Shop Client
 
-## Live Demo
-To be added
+Angular web app for booking barber appointments. Pick a shop, choose a day and an available time slot, optionally choose a barber, enter your details and get a booking confirmation.
 
-## Tech/framework used
-<b>Built with</b>
-- Angular 9
-- NgRx
-- Bootstrap
-- RxJs
+This is the UI half of the project. It needs the REST backend, [barber-shop-api](https://github.com/manojmallick/barber-shop-api), to be running.
 
+> **The brief:** a barber-shop owner wants customers to book an appointment with the barber of their choice. He can't gather customer feedback, send reminders or collect metrics. The work is split into phases.
 
 ## Features
-Helping out all the barbers out there who cannot invest money.(It contains only one part of the full application i.e. UI )
-#### Phase 1
-- In this first phase, the least that we can do is to appoint the customer a barber that is available. Each booking must claim a time slot of 30 minutes.
 
-#### Phase 2
-- The customer can either pick a time slot where he will be able to see which barber is available or be able to select a barber and see his schedule. The barbers should be ordered by experience_level. It's up to you what defaults you choose, but hey Edwin does care about the customer journey, or as he likes to call it, "The clever stuff"!
+| Phase | Capability | Status |
+|---|---|---|
+| 1 | Book an available barber, 30-minute slots | Done |
+| 2 | Pick a time slot and see which barbers are free, or pick a barber and see their schedule; barbers ordered by experience | Done |
+| 3 | Reminder one hour before the appointment | Done on the API side (email) |
+| Extra | Multiple shops: choose a shop first, everything else is scoped to it | Done |
+| Extra | Confirmation page after booking | Done |
+| Extra | UI for managing services | Pending (services come from the API) |
+| Planned | Change or cancel an appointment, recurring bookings, waiting list, shop-owner metrics | Not started |
 
-#### Phase 3
-- As a shop owner, I want to be able to see metrics about the barbers, clients and appointments.
-- As a customer, I want to be able to change, update or delete my appointment
-- As a customer, I want to receive a reminder 1 hour before my appointment.
-- As a customer, I want to be do recurring bookings. Let's say every 2 weeks or perhaps every Month.
-- As a shop owner, I want customers to be able to join a wait list if no bookings are available.
+## Tech stack
 
-#### Additional Futures
-- Shop page is configurable i.e. user shop owner can add more stores(all other entities will work around the shop id)
-- Services are added from the api side , but ui its pending
-- The user will get email after booking confirmation
+Angular 9, NgRx 10 (store, effects, entity, router-store, devtools), RxJS 6, Bootstrap 4 with ng-bootstrap, ngx-toastr, Font Awesome 4, Karma/Jasmine for unit tests, Protractor for end-to-end tests, Docker with Nginx for production.
 
-### Technical features
-- added with swagger support [Host]/api/swagger-ui.html
-- added with docker configuration to be deployed to dev and prod
+## Quick start
 
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-Provide step by step series of examples and explanations about how to get a development env running.
+### Option A: Docker
 
-Multiple ways to run the application 
-- Docker way
+```bash
+git clone https://github.com/manojmallick/barber-shop-client.git
+cd barber-shop-client
 
-I have created two scripts & two bat files
-After in the root 
+sh ./run-dev.sh   # development, http://localhost:4200
+sh ./run.sh       # production build behind Nginx, http://localhost
 ```
-sh ./run-dev.sh   #this is for local dev(port :4200)
-sh ./run.sh       #this for prod env(port:80)
 
-or
+On Windows use `run-dev.bat` or `run.bat`.
 
-chmod +x run.sh
-./run.sh
+### Option B: Node
 
-or
+Requires Node.js 12 or newer (the Docker image uses Node 12) and npm.
 
-./mvnw.cmd clean install
-docker-compose -f docker-compose-dev.yml up -d --build
+```bash
+npm install
+npm start          # ng serve, http://localhost:4200
+```
 
-``` 
+### Start the backend first
 
-port can be update by  docker compose file/ .env file in root.
+The UI loads shops, barbers and availability from the API. Run [barber-shop-api](https://github.com/manojmallick/barber-shop-api) (its dev setup listens on `http://localhost:8080`) before opening the app. Without it the shop list stays empty.
 
-To check the code ide like Vs code , lombok is to be installed 
+## Configuration
 
-- Other way
+The API address and the booking window are read at runtime from `window.env`, defined in `src/assets/env.js` (generated from `env.template.js` in the Docker setup).
 
-- Node
-- IDE(optional)
-# this requires backend application should be running
+| Setting | `env.js` key | Docker variable | Default | Meaning |
+|---|---|---|---|---|
+| API base URL | `baseUrl` | `APP_BASE_URL` | `http://localhost:8080` | Where the backend runs. The client calls `<baseUrl>/api/v1/...` |
+| Booking window | `maxDays` | `APP_MAX_DAYS` | `90` | How many days ahead customers can book |
 
-## Credits
-Thank you all who like my project. 
+`docker-compose-dev.yml` points to `http://localhost:8080` (the API's dev port); `docker-compose.yml` points to `http://localhost:8088` (the API's production-style port). Edit these values to match where your API runs.
 
-![title](picture/6.gif)
+## How it works
 
-#### Anything else that seems useful
+Routes:
+
+| URL | Screen |
+|---|---|
+| `/shops` | Shop list (default route) |
+| `/shops/:shopId` | Redirects to the shop's appointments |
+| `/shops/:shopId/appointments` | Choose a date, slot and barber; enter customer details |
+| `/shops/:shopId/appointments/:appointmentId` | Booking confirmation |
+
+State is managed with NgRx. Each feature has actions, a reducer, effects that call the API, and resolvers that load data before a route renders.
+
+API endpoints used (all under `<baseUrl>/api/v1`): `/shops`, `/barbers`, `/availabilities`, `/appointments`.
+
+## Project structure
+
+```
+src/app/
+├── app.module.ts, app-routing.module.ts
+├── core/                     Layout, navbar, footer, 404 page, root reducers
+├── shops/
+│   ├── actions/ reducers/ effects/ selectors/    NgRx state
+│   ├── services/             HTTP clients for shops, barbers, availabilities, appointments
+│   ├── resolvers/            Pre-load data for routes
+│   ├── containers/           Smart components (shop list, appointment, confirmation)
+│   ├── components/           Presentational components (shop, appointment and confirmation details)
+│   ├── models/               TypeScript interfaces
+│   └── validation/           Form validation messages
+└── appointment/              Lazy-loaded booking module (routes under :shopId/appointments)
+src/environments/             Angular build environments
+src/assets/env.js             Runtime configuration (API URL, max days)
+nginx/nginx.conf              Production web server config
+```
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm start` | Dev server on port 4200 |
+| `npm run build` | Build to `dist/` (add `-- --prod` for production) |
+| `npm test` | Unit tests (Karma and Jasmine) |
+| `npm run lint` | TSLint |
+| `npm run e2e` | End-to-end tests (Protractor) |
+
+## Related
+
+- Backend: [barber-shop-api](https://github.com/manojmallick/barber-shop-api): REST API, MongoDB, email reminders, Swagger docs.
 
 ## License
+
 MIT © [Manoj Mallick](https://github.com/manojmallick)
